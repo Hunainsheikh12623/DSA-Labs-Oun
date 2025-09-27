@@ -1,153 +1,142 @@
 package Lab05;
-class Node {
-    String data;
-    Node next;
-    
-    Node(String data) {
-        this.data = data;
-        this.next = null;
-    }
 
+class LLNode {
+    String value;
+    LLNode nextNode;
+    
+    LLNode(String value) {
+        this.value = value;
+        this.nextNode = null;
+    }
 }
 
-class linkedList {
-    Node head = null;
-    Node tail = null;
+class StudentList {
+    LLNode first = null;
+    LLNode last = null;
 
-    void insert(String data) {
-        Node n = new Node(data);
-        if(head == null) {
-            head = n;
-            tail = n;
+    void add(String value) {
+        LLNode newNode = new LLNode(value);
+        if(first == null) {
+            first = newNode;
+            last = newNode;
         } else {
-            tail.next = n;
-            tail = n;
+            last.nextNode = newNode;
+            last = newNode;
         }
     }
 
-    void insertAfterKey(String item, String key) {
-         Node current = head;
-         while(current != null) {
-            if(current.data == item) {
-                Node n = new Node(key);
-                n.next = current.next;
-                current.next = n;
+    void addAfter(String target, String newValue) {
+        LLNode currentNode = first;
+        while(currentNode != null) {
+            if(currentNode.value == target) {
+                LLNode newNode = new LLNode(newValue);
+                newNode.nextNode = currentNode.nextNode;
+                currentNode.nextNode = newNode;
             }
-                current = current.next;
-            }
+            currentNode = currentNode.nextNode;
+        }
     }
 
-    void insertAtStart(String item){
-        Node n = new Node(item);
-        n.next = head;
-        head = n;
+    void addAtStart(String value){
+        LLNode newNode = new LLNode(value);
+        newNode.nextNode = first;
+        first = newNode;
     }
 
-    void search(String item) {
-        Node current = head;
-        int index = 0;
-        while(current != null) {
-            if(current.data == item) {
-                System.out.println("Item found: " + item + " at index " + index);
+    void find(String value) {
+        LLNode currentNode = first;
+        int position = 0;
+        while(currentNode != null) {
+            if(currentNode.value == value) {
+                System.out.println("Item found: " + value + " at index " + position);
             }
-            current = current.next;
-            index++;
-            if(current == null) {
-                System.out.println("Item "+ item +" not found: ");
+            currentNode = currentNode.nextNode;
+            position++;
+            if(currentNode == null) {
+                System.out.println("Item "+ value +" not found: ");
             }
         }
     }
 
-
-
-
-
-    void display() {
-        Node current = head;
-        while(current != null) {
-            System.out.print(current.data + " -> ");
-            current = current.next;
+    void show() {
+        LLNode currentNode = first;
+        while(currentNode != null) {
+            System.out.print(currentNode.value + " -> ");
+            currentNode = currentNode.nextNode;
         }
         System.out.println("null");
     }
 
-    void reverse() {
-        Node prev = null;
-        Node current = head;
-        Node next = null;
-        tail = head; // Update tail to the original head
-        while(current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+    void reverseList() {
+        LLNode prevNode = null;
+        LLNode currentNode = first;
+        LLNode nextNode = null;
+        last = first; // Update last to the original first
+        while(currentNode != null) {
+            nextNode = currentNode.nextNode;
+            currentNode.nextNode = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
         }
-        head = prev; // Update head to the new front of the list
+        first = prevNode; // Update first to the new front
     }
 
-    void deleteStartAddAtEnd() {
-        if(head == null || head.next == null) {
+    void moveFirstToEnd() {
+        if(first == null || first.nextNode == null) {
             return;
         }
         else{
-            Node temp = head;
-            head = head.next;
-            tail.next = temp;
-            temp.next = null;
-            tail = temp;
+            LLNode temp = first;
+            first = first.nextNode;
+            last.nextNode = temp;
+            temp.nextNode = null;
+            last = temp;
         }
     }
 
-    void displayGrades() {
-        Node current = head;
-        while(current != null) {
-            System.out.println("Student " + current.data + " Grade: " + current.next.data);
-            current = current.next.next;
+    void showGrades() {
+        LLNode currentNode = first;
+        while(currentNode != null) {
+            System.out.println("Student " + currentNode.value + " Grade: " + currentNode.nextNode.value);
+            currentNode = currentNode.nextNode.nextNode;
         }
     }
-
-
 }
-
 
 public class Task0505 {
     public static void main(String[] args) {
         
-        linkedList list = new linkedList();
-        list.insert("24CS001");
-        list.insert("A+");
+        StudentList list = new StudentList();
+        list.add("24CS001");
+        list.add("A+");
 
-        list.insert("24CS003");
-        list.insert("A");
+        list.add("24CS003");
+        list.add("A");
 
-        list.insert("24CS005");
-        list.insert("A+");
+        list.add("24CS005");
+        list.add("A+");
 
-        list.insert("24CS007");
-        list.insert("B+");
+        list.add("24CS007");
+        list.add("B+");
         
-        list.insert("24CS009");
-        list.insert("A");
+        list.add("24CS009");
+        list.add("A");
 
-        list.insert("24CS011");
-        list.insert("A+");
+        list.add("24CS011");
+        list.add("A+");
         
-        list.insert("24CS013");
-        list.insert("B");
+        list.add("24CS013");
+        list.add("B");
 
-        list.insert("24CS015");
-        list.insert("A");
+        list.add("24CS015");
+        list.add("A");
 
-        list.insert("24CS017");
-        list.insert("A+");
+        list.add("24CS017");
+        list.add("A+");
 
-        list.insert("24CS019");
-        list.insert("A+");
+        list.add("24CS019");
+        list.add("A+");
 
-        list.displayGrades();
-
+        list.showGrades();
     } 
-    
 }
-
-
