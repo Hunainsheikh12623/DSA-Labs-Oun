@@ -1,0 +1,524 @@
+// Task 01:
+import java.util.Scanner;
+
+class SumArray2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int[] numbers = new int[5];
+        int total = 0;
+
+        System.out.println("Enter 5 numbers:");
+        for(int index = 0; index < 5; index++) {
+            numbers[index] = input.nextInt();
+            total += numbers[index];
+        }
+
+        System.out.println("Sum = " + total);
+    }
+}
+
+
+// Task 02:
+import java.util.Scanner;
+
+class AverageArray2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int[] numbers = new int[10];
+        int total = 0;
+
+        System.out.println("Enter 10 numbers:");
+        for(int idx = 0; idx < 10; idx++) {
+            numbers[idx] = input.nextInt();
+            total += numbers[idx];
+        }
+
+        double mean = total / 10.0;
+        int greaterSum = 0, counter = 0;
+
+        for(int idx = 0; idx < 10; idx++) {
+            if(numbers[idx] >= mean) {
+                greaterSum += numbers[idx];
+                counter++;
+            }
+        }
+
+        double result = (counter > 0) ? (greaterSum / (double)counter) : 0;
+        System.out.println("Final Average = " + result);
+    }
+}
+
+
+
+// Task 03:
+import java.util.Scanner;
+import java.util.Arrays;
+
+class MedianArray2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int[] numbers = new int[11];
+
+        System.out.println("Enter 11 numbers:");
+        for(int idx = 0; idx < 11; idx++) {
+            numbers[idx] = input.nextInt();
+        }
+
+        Arrays.sort(numbers);
+        int middle = numbers[11/2];
+
+        System.out.println("Median = " + middle);
+    }
+}
+
+
+// Task 04:
+import java.util.Scanner;
+
+class AverageCheck2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int size;
+
+        do {
+            System.out.print("Enter size (1-100): ");
+            size = input.nextInt();
+        } while(size < 1 || size > 100);
+
+        int[] numbers = new int[size];
+        int total = 0;
+
+        System.out.println("Enter " + size + " numbers:");
+        for(int index = 0; index < size; index++) {
+            numbers[index] = input.nextInt();
+            total += numbers[index];
+        }
+
+        double mean = total / (double)size;
+        System.out.println("Sum = " + total);
+        System.out.println("Average = " + mean);
+    }
+}
+
+
+
+
+// Task 05:
+import java.util.Scanner;
+
+class MatrixMultiplication2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter rows of X: ");
+        int rowsX = input.nextInt();
+        System.out.print("Enter cols of X: ");
+        int colsX = input.nextInt();
+        System.out.print("Enter rows of Y: ");
+        int rowsY = input.nextInt();
+        System.out.print("Enter cols of Y: ");
+        int colsY = input.nextInt();
+
+        if(colsX != rowsY) {
+            System.out.println("Multiplication not possible. Condition not satisfied.");
+            return;
+        }
+
+        int[][] X = new int[rowsX][colsX];
+        int[][] Y = new int[rowsY][colsY];
+        int[][] Z = new int[rowsX][colsY];
+
+        System.out.println("Enter elements of X:");
+        for(int a = 0; a < rowsX; a++) {
+            for(int b = 0; b < colsX; b++) {
+                X[a][b] = input.nextInt();
+            }
+        }
+
+        System.out.println("Enter elements of Y:");
+        for(int a = 0; a < rowsY; a++) {
+            for(int b = 0; b < colsY; b++) {
+                Y[a][b] = input.nextInt();
+            }
+        }
+
+        for(int a = 0; a < rowsX; a++) {
+            for(int b = 0; b < colsY; b++) {
+                for(int k = 0; k < colsX; k++) {
+                    Z[a][b] += X[a][k] * Y[k][b];
+                }
+            }
+        }
+
+        System.out.println("Result Matrix:");
+        for(int a = 0; a < rowsX; a++) {
+            for(int b = 0; b < colsY; b++) {
+                System.out.print(Z[a][b] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+===============================================================
+// Task 06: Algorithm:
+Start
+1. Input n
+
+2. Read array of size n
+
+3. Initialize count = 0
+
+4. repeart from 1 to n → if a[i] > 5, increment count
+
+5. Print count
+End
+
+================================================================
+
+Task 07: Algorithm:
+
+Start
+
+Input n ≥ 2 (elements in list)
+
+Read list
+
+Initialize first = list[1], declear second:
+
+For each element:
+
+If element > first then second = first, first = element
+
+Else if element > second and element < first then second = element
+
+Print second
+
+End
+
+==================================================================
+
+// Task 08: Algorithm:
+Start
+
+Input n
+
+Read array
+
+Initialize pos = 0
+
+repeat from 1 to n: if element is even, set pos = index
+
+Print pos (0 if none found)
+
+End
+
+========================================================================
+
+// Task 09:
+
+Start
+
+Input n (Elements in array)
+
+initilize min := arr[First] and max := arr[first]
+
+Repeat from 2 to n:
+
+check if arr[i] < min then min := arr[i]
+check if arr[i] > max than max := arr[i]
+
+end of If:
+end of For
+
+
+Compute (min + max)/2
+
+Print result
+
+End
+
+==============================================================================
+
+// Task 10:
+
+// int[][] matrix1 = {
+        //     {1, 2},
+        //     {3, 4}
+        // };
+
+        // int[][] matrix2 = {
+        //     {5, 6},
+        //     {7, 8}
+        // };
+
+        // int  m1rows = matrix1.length;
+        // int m1cols = matrix1[0].length;
+
+        // int m2rows = matrix2.length;
+        // int m2cols = matrix2[0].length;
+
+        // if(m1rows == m2rows && m1cols == m2cols) {
+        //     int[][] sumMatrix = new int[m1rows][m1cols];
+
+        //     for(int i = 0; i < m1rows; i++) {
+        //         for(int j = 0; j < m1cols; j++ ) {
+        //             sumMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
+        //             System.out.print(sumMatrix[i][j] + " ");
+                    
+        //         }
+        //         System.out.println("");
+        //     }
+        // }
+        // else {
+        //     System.out.println("Matrices cannot be added");
+        // }
+
+
+========================================================================================
+
+// Task 11:
+
+Start
+
+Input n (elements in Array)
+
+repeat from 1 to n:
+
+set square := arr[element]^2
+
+Print square
+end of loop:
+
+End
+
+============================================================================================
+
+// Task 12:
+Start
+
+Input n (Elements in array)
+
+Initialize max = arr[first];
+
+repeat from 2 to n:
+
+chech if arr[i] > max than max := arr[i]
+
+end of if
+end of loop
+
+Print max
+
+End
+
+============================================================================================
+
+// Task 13: Algorithm and code
+
+Start
+
+Initialize an array arr[m] of maximum capacity.
+
+Set the logical size n (current elements used).
+
+Read the element x to be inserted.
+
+Read the position pos (must be between 0 and n).
+
+Increase logical size: n ← n + 1.
+
+Shift elements:
+
+For i ← n-1 down to pos+1
+
+arr[i] ← arr[i-1]
+
+Insert element: arr[pos] ← x.
+
+Print array from index 0 to n-1.
+
+Stop
+
+import java.util.Scanner;
+
+public class InsertArray2 {
+    public static void main(String[] args) {
+        int[] numbers = new int[6]; // fixed size
+        int size = 6;               // logical size
+
+        numbers[0] = 22;
+        numbers[1] = 32;
+        numbers[2] = 12;
+        numbers[3] = 43;
+        numbers[4] = 25;
+        numbers[5] = 2;
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter value to insert: ");
+        int value = input.nextInt();
+        System.out.print("Enter index (0 to " + size + "): ");
+        int index = input.nextInt();
+
+        size++; // grow logical size
+
+        for (int j = size - 1; j > index; j--) {
+            numbers[j] = numbers[j - 1];
+        }
+
+        numbers[index] = value;
+
+        System.out.println("Updated array after insertion:");
+        for (int j = 0; j < size; j++) {
+            System.out.print(numbers[j] + " ");
+        }
+    }
+}
+
+
+==========================================================================
+
+// TAsk 14: Algorithm and code:
+
+Start
+
+Initialize array := {22, 32, 12, 43, 25, 2}
+set n = size of Array
+
+set loc := input Location fro user
+
+check if loc >= 0 and loc < n → arr[loc] := 0
+
+Else Print invalid location:
+
+End
+
+import java.util.Scanner;
+
+class DeleteArray2 {
+    public static void main(String[] args) {
+        int[] nums = {22, 32, 12, 43, 25, 2};
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter index to delete (0-5): ");
+        int index = input.nextInt();
+
+        if(index < 0 || index >= nums.length) {
+            System.out.println("Invalid index!");
+            return;
+        } else {
+            nums[input] = 0;
+        }
+    }
+}
+
+=================================================================================================
+
+Task 15: Algorithm and Code:
+Start
+
+Initialize an array nums with elements {21, 32, 43, 54, 12, 31, 65, 76, 89, 3, 5, 7, 8, 12, 48, 7, 6}.
+
+Update the element at index 6 with 500.
+
+nums[6] ← 500
+
+Update the element at index 9 with 900.
+
+nums[9] ← 900
+
+Print "New Array:".
+
+Traverse array nums from 1 to n (size of array_:
+
+For each element num in nums, print num.
+
+Stop
+
+class UpdateArray2 {
+    public static void main(String[] args) {
+        int[] nums = {21,32,43,54,12,31,65,76,89,3,5,7,8,12,48,7,6};
+
+        nums[6] = 500;
+        nums[9] = 900;
+
+        System.out.println("New Array:");
+        for(int v : nums) {
+            System.out.print(v + " ");
+        }
+    }
+}
+
+===================================================================================================
+
+Task 16:
+
+Point of View
+
+Insertion at the End of a Linear Array
+
+When we insert an element at the end of an array, the operation is simple.
+
+If there is free space available in the array, the new element is placed directly after the last element.
+
+No shifting of existing elements is required.
+
+Time complexity: 
+O(1) (constant time).
+
+Example: [10, 20, 30] → insert 40 at end → [10, 20, 30, 40].
+
+Insertion in the Middle of a Linear Array
+
+When we insert an element at the middle (or at any position other than the end), we must shift all the elements from that position onward one step to the right.
+
+This shifting increases the cost of the operation.
+
+Time complexity: 
+O(n) in the worst case (because almost all elements may need to be shifted).
+
+Example: [10, 20, 30, 40] → insert 25 at index 1 → [10, 25, 20, 30, 40].
+
+✅ Conclusion:
+
+End insertion is efficient (constant time).
+
+Middle insertion is costly (linear time) because shifting is required.
+
+================================================================================================================================
+
+Task 17:
+
+Deletion in a Linear Array
+
+When deleting an element from a linear array, we usually remove the element and then shift the remaining elements to fill the gap.
+
+1. Best Case (O(1))
+
+Deletion at the end of the array.
+
+No shifting is required because the last element can just be removed.
+
+Example: [10, 20, 30, 40] → delete 40 → [10, 20, 30].
+
+2. Worst Case (O(n))
+
+Deletion at the beginning of the array (index 0).
+
+All other elements must be shifted one position left.
+
+Example: [10, 20, 30, 40] → delete 10 → shift → [20, 30, 40].
+
+Requires shifting of n−1 elements.
+
+3. Average Case (O(n))
+
+If the element to delete is somewhere in the middle, on average, about half of the elements need to be shifted.
+
+Still considered O(n) because shifting depends on array size.
+
+Example: [10, 20, 30, 40] → delete 20 → [10, 30, 40] (shift half the elements).
+
+
+
+
