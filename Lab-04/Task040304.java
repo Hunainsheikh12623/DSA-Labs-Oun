@@ -2,50 +2,45 @@ package Lab04;
 
 public class Task040304 {
     public static void main(String[] args) {
-        int[] arr = {2, 3, 6, 8, 1, 5};
+        int[] numbers = {2, 3, 6, 8, 1, 5};
 
         // Selection Sort
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] < arr[minIndex]) {
-                    minIndex = j;
+        for (int index = 0; index < numbers.length - 1; index++) {
+            int minPos = index;
+            for (int k = index + 1; k < numbers.length; k++) {
+                if (numbers[k] < numbers[minPos]) {
+                    minPos = k;
                 }
             }
-            int temp = arr[minIndex];
-            arr[minIndex] = arr[i];
-            arr[i] = temp;
+            int swap = numbers[minPos];
+            numbers[minPos] = numbers[index];
+            numbers[index] = swap;
         }
 
         System.out.print("Selection Sort Result: ");
-        for (int num : arr) {
-            System.out.print(num + " ");
+        for (int value : numbers) {
+            System.out.print(value + " ");
         }
         System.out.println();
 
 
         // Insertion Sort
-        int[] arr2 = {2, 3, 6, 8, 1, 5};
+        int[] data = {2, 3, 6, 8, 1, 5};
 
-        for (int i = 1; i < arr2.length; i++) {
-            int key = arr2[i];
-            int j = i - 1;
+        for (int pos = 1; pos < data.length; pos++) {
+            int element = data[pos];
+            int prev = pos - 1;
 
-            while (j >= 0 && arr2[j] > key) {
-                arr2[j + 1] = arr2[j];
-                j = j - 1;
+            while (prev >= 0 && data[prev] > element) {
+                data[prev + 1] = data[prev];
+                prev = prev - 1;
             }
-            arr2[j + 1] = key;
+            data[prev + 1] = element;
         }
 
         System.out.print("Insertion Sort Result: ");
-        for (int num : arr2) {
-            System.out.print(num + " ");
+        for (int value : data) {
+            System.out.print(value + " ");
         }
-
-           
-
-    
     }
-    
 }
