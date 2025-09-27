@@ -1,136 +1,122 @@
-class Node {
-    int data;
-    Node next;
+class Element {
+    int value;
+    Element link;
     
-    Node(int data) {
-        this.data = data;
-        this.next = null;
+    Element(int value) {
+        this.value = value;
+        this.link = null;
     }
-
 }
 
-class linkedList {
-    Node head = null;
-    Node tail = null;
+class CustomList {
+    Element first = null;
+    Element last = null;
 
-    void insert(int data) {
-        Node n = new Node(data);
-        if(head == null) {
-            head = n;
-            tail = n;
+    void add(int value) {
+        Element node = new Element(value);
+        if(first == null) {
+            first = node;
+            last = node;
         } else {
-            tail.next = n;
-            tail = n;
+            last.link = node;
+            last = node;
         }
     }
 
-    void insertAfterKey(int item, int key) {
-         Node current = head;
-         while(current != null) {
-            if(current.data == item) {
-                Node n = new Node(key);
-                n.next = current.next;
-                current.next = n;
+    void addAfterKey(int searchVal, int newVal) {
+        Element pointer = first;
+        while(pointer != null) {
+            if(pointer.value == searchVal) {
+                Element node = new Element(newVal);
+                node.link = pointer.link;
+                pointer.link = node;
             }
-                current = current.next;
-            }
+            pointer = pointer.link;
+        }
     }
 
-    void insertAtStart(int item){
-        Node n = new Node(item);
-        n.next = head;
-        head = n;
+    void addAtStart(int newVal){
+        Element node = new Element(newVal);
+        node.link = first;
+        first = node;
     }
 
-    void search(int item) {
-        Node current = head;
-        int index = 0;
-        while(current != null) {
-            if(current.data == item) {
-                System.out.println("Item found: " + item + " at index " + index);
+    void find(int searchVal) {
+        Element pointer = first;
+        int idx = 0;
+        while(pointer != null) {
+            if(pointer.value == searchVal) {
+                System.out.println("Item found: " + searchVal + " at index " + idx);
             }
-            current = current.next;
-            index++;
-            if(current == null) {
-                System.out.println("Item "+ item +" not found: ");
+            pointer = pointer.link;
+            idx++;
+            if(pointer == null) {
+                System.out.println("Item "+ searchVal +" not found: ");
             }
         }
     }
 
-
-
-
-
-    void display() {
-        Node current = head;
-        while(current != null) {
-            System.out.print(current.data + " -> ");
-            current = current.next;
+    void show() {
+        Element pointer = first;
+        while(pointer != null) {
+            System.out.print(pointer.value + " -> ");
+            pointer = pointer.link;
         }
         System.out.println("null");
     }
 
-    void reverse() {
-        Node prev = null;
-        Node current = head;
-        Node next = null;
-        tail = head; // Update tail to the original head
-        while(current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+    void reverseList() {
+        Element prevNode = null;
+        Element pointer = first;
+        Element nextNode = null;
+        last = first; // Update last to the original first
+        while(pointer != null) {
+            nextNode = pointer.link;
+            pointer.link = prevNode;
+            prevNode = pointer;
+            pointer = nextNode;
         }
-        head = prev; // Update head to the new front of the list
+        first = prevNode; // Update first to the new head
     }
 
-    void treverse() {
-            Node current = head;
-            System.out.println("Traversing Geo Marks");
-            while(current.data != 0) {
-                System.out.print(current.data + " -> ");
-                current = current.next;
-            }
-            System.out.println("null");
-            current = current.next;
-            System.out.println("");
-            System.out.println("Traversing Algos Marks");
-            while(current.data != 0) {
-                System.out.print(current.data + " -> ");
-                current = current.next;
-            }
-            System.out.println("null");
+    void traverse() {
+        Element pointer = first;
+        System.out.println("Traversing Geo Marks");
+        while(pointer.value != 0) {
+            System.out.print(pointer.value + " -> ");
+            pointer = pointer.link;
         }
-
-
+        System.out.println("null");
+        pointer = pointer.link;
+        System.out.println("");
+        System.out.println("Traversing Algos Marks");
+        while(pointer.value != 0) {
+            System.out.print(pointer.value + " -> ");
+            pointer = pointer.link;
+        }
+        System.out.println("null");
+    }
 }
 
-
-public class Task0501 {
+public class Task0501{
     public static void main(String[] args) {
-        int Algo = 0;
-        int geo = 0;
+        int algoMarks = 0;
+        int geoMarks = 0;
 
-        linkedList list = new linkedList();
-        list.insert(84);
-        list.insert(62);
-        list.insert(74);
-        list.insert(100);
-        list.insert(74);
-        list.insert(78);
-        list.insert(0);
-        list.insert(88);
-        list.insert(74);
-        list.insert(93);
-        list.insert(82);
-        list.insert(0);
+        CustomList marksList = new CustomList();
+        marksList.add(84);
+        marksList.add(62);
+        marksList.add(74);
+        marksList.add(100);
+        marksList.add(74);
+        marksList.add(78);
+        marksList.add(0);
+        marksList.add(88);
+        marksList.add(74);
+        marksList.add(93);
+        marksList.add(82);
+        marksList.add(0);
 
-        list.treverse();
-        
-        
-
-        
-        
+        marksList.traverse();
     } 
-    
 }
