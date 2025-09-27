@@ -1,30 +1,55 @@
-def precedence(operator):
-    if operator in ('+', '-'):
-        return 1
-    if operator in ('*', '/'):
-        return 2
-    return 0
+import java.util.*;
 
-def infix_to_postfix(expression):
-    operator_stack = []
-    postfix = ""
-    for token in expression:
-        if token.isalnum():  
-            postfix += token
-        elif token == '(':
-            operator_stack.append(token)
-        elif token == ')':
-            while operator_stack and operator_stack[-1] != '(':
-                postfix += operator_stack.pop()
-            operator_stack.pop()
-        else:   
-            while operator_stack and precedence(operator_stack[-1]) >= precedence(token):
-                postfix += operator_stack.pop()
-            operator_stack.append(token)
-    while operator_stack:
-        postfix += operator_stack.pop()
-    return postfix
+public class InfixToPostfix {
 
+    // function to return precedence of operators
+    public static int precedence(char operator) {
+        if (operator == '+' || operator == '-') {
+            return 1;
+        }
+        if (operator == '*' || operator == '/') {
+            return 2;
+        }
+        return 0;
+    }
 
-input_expr = "(A+B)*C"
-print("Postfix:", infix_to_postfix(input_expr))
+    // function to convert infix to postfix
+    public static String infixToPostfix(String expression) {
+        Stack<Character> operatorStack = new Stack<>();
+        StringBuilder postfix = new StringBuilder();
+
+        for (int i = 0; i < expression.length(); i++) {
+            char token = expression.charAt(i);
+
+            if (Character.isLetterOrDigit(token)) {  // operand
+                postfix.append(token);
+            } 
+            else if (token == '(') {
+                operatorStack.push(token);
+            } 
+            else if (token == ')') {
+                while (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
+                    postfix.append(operatorStack.pop());
+                }
+                operatorStack.pop(); // remove '('
+            } 
+            else { // operator
+                while (!operatorStack.isEmpty() && precedence(operatorStack.peek()) >= precedence(token)) {
+                    postfix.append(operatorStack.pop());
+                }
+                operatorStack.push(token);
+            }
+        }
+
+        while (!operatorStack.isEmpty()) {
+            postfix.append(operatorStack.pop());
+        }
+
+        return postfix.toString();
+    }
+
+    public static void main(String[] args) {
+        String inputExpr = "(A+B)*C";
+        System.out.println("Postfix: " + infixToPostfix(inputExpr));
+    }
+}
