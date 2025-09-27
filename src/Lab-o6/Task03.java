@@ -1,128 +1,120 @@
-class Node {
-    int data;
-    Node next;
+class LLNode {
+    int value;
+    LLNode nextNode;
     
-    Node(int data) {
-        this.data = data;
-        this.next = null;
+    LLNode(int value) {
+        this.value = value;
+        this.nextNode = null;
     }
-
 }
 
-class linkedList {
-    Node head = null;
-    Node tail = null;
+class IntLinkedList {
+    LLNode first = null;
+    LLNode last = null;
 
-    void insert(int data) {
-        Node n = new Node(data);
-        if(head == null) {
-            head = n;
-            tail = n;
+    void add(int value) {
+        LLNode newNode = new LLNode(value);
+        if(first == null) {
+            first = newNode;
+            last = newNode;
         } else {
-            tail.next = n;
-            tail = n;
+            last.nextNode = newNode;
+            last = newNode;
         }
     }
 
-    void insertAfterKey(int item, int key) {
-         Node current = head;
-         while(current != null) {
-            if(current.data == item) {
-                Node n = new Node(key);
-                n.next = current.next;
-                current.next = n;
+    void addAfter(int target, int newValue) {
+        LLNode currentNode = first;
+        while(currentNode != null) {
+            if(currentNode.value == target) {
+                LLNode newNode = new LLNode(newValue);
+                newNode.nextNode = currentNode.nextNode;
+                currentNode.nextNode = newNode;
             }
-                current = current.next;
-            }
+            currentNode = currentNode.nextNode;
+        }
     }
 
-    void insertAtStart(int item){
-        Node n = new Node(item);
-        n.next = head;
-        head = n;
+    void addAtStart(int value){
+        LLNode newNode = new LLNode(value);
+        newNode.nextNode = first;
+        first = newNode;
     }
 
-    void insertAtLast(int item) {
-        Node n = new Node(item);
-        tail.next = n;
-        n.next = null;
+    void addAtEnd(int value) {
+        LLNode newNode = new LLNode(value);
+        last.nextNode = newNode;
+        newNode.nextNode = null;
+        last = newNode;
     }
 
-    void search(int item) {
-        Node current = head;
-        int index = 0;
-        while(current != null) {
-            if(current.data == item) {
-                System.out.println("Item found: " + item + " at index " + index);
+    void find(int value) {
+        LLNode currentNode = first;
+        int position = 0;
+        while(currentNode != null) {
+            if(currentNode.value == value) {
+                System.out.println("Item found: " + value + " at index " + position);
             }
-            current = current.next;
-            index++;
-            if(current == null) {
-                System.out.println("Item "+ item +" not found: ");
+            currentNode = currentNode.nextNode;
+            position++;
+            if(currentNode == null) {
+                System.out.println("Item "+ value +" not found: ");
             }
         }
     }
 
-
-
-
-
-    void display() {
-        Node current = head;
-        while(current != null) {
-            if(current.data == 0) {
-                current = current.next;
+    void show() {
+        LLNode currentNode = first;
+        while(currentNode != null) {
+            if(currentNode.value == 0) {
+                currentNode = currentNode.nextNode;
             }
-            else{
-            System.out.print(current.data + " -> ");
-            current = current.next;
+            else {
+                System.out.print(currentNode.value + " -> ");
+                currentNode = currentNode.nextNode;
             }
-            
         }
         System.out.println("null");
     }
 
-    void reverse() {
-        Node prev = null;
-        Node current = head;
-        Node next = null;
-        tail = head; // Update tail to the original head
-        while(current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+    void reverseList() {
+        LLNode prevNode = null;
+        LLNode currentNode = first;
+        LLNode nextNode = null;
+        last = first; // Update last to the original first
+        while(currentNode != null) {
+            nextNode = currentNode.nextNode;
+            currentNode.nextNode = prevNode;
+            prevNode = currentNode;
+            currentNode = nextNode;
         }
-        head = prev; // Update head to the new front of the list
+        first = prevNode; // Update first to the new front
     }
 }
 
 public class Task03 {
     public static void main(String[] args) {
-        linkedList l = new linkedList();
-        l.insert(0);
-        l.insert(0);
-        l.insert(0);
-        l.insert(0);
-        l.insert(0);
-        l.insert(0);
-        l.insert(0);
-        l.insert(6);
-        l.insert(4);
-        l.insert(1);
+        IntLinkedList list = new IntLinkedList();
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        list.add(0);
+        list.add(6);
+        list.add(4);
+        list.add(1);
 
-        l.display();
+        list.show();
 
-        l.insertAtStart(10);
-        l.display();
+        list.addAtStart(10);
+        list.show();
 
-        l.insertAfterKey(4, 8);
-        l.display();
+        list.addAfter(4, 8);
+        list.show();
 
-        l.insertAtLast(9);
-        l.display();
-
-
-
+        list.addAtEnd(9);
+        list.show();
     }
 }
