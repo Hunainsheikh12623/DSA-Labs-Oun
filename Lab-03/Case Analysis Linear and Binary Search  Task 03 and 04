@@ -1,0 +1,17 @@
+Case Analysis
+
+Linear Search:
+
+Best Case: Target is at the first index → Only 1 comparison → O(1).
+
+Worst Case: Target is at the last index or not present → All 30 comparisons → O(n).
+
+Average Case: Target is somewhere in the middle → About n/2 comparisons → O(n).
+
+Binary Search:
+
+Best Case: Target is at the middle in the first comparison → O(1).
+
+Worst Case: Target requires repeatedly dividing until 1 element left → O(log n).
+
+Average Case: On average, about log₂(n) comparisons → O(log n).
