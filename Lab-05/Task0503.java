@@ -1,142 +1,131 @@
 package Lab05;
-class Node {
-    char data;
-    Node next;
-    Node prev;
-    
-    Node(char data) {
-        this.data = data;
-        this.next = null;
-        this.prev = null;
-    }
 
+class DLNode {
+    char value;
+    DLNode nextNode;
+    DLNode prevNode;
+    
+    DLNode(char value) {
+        this.value = value;
+        this.nextNode = null;
+        this.prevNode = null;
+    }
 }
 
-class doublyLinkedList {
-    Node prev = null;
-    Node head = null;
-    Node tail = null;
+class DoublyList {
+    DLNode first = null;
+    DLNode last = null;
 
-    void insert(char data) {
-        Node n = new Node(data);
-        if(head == null) {
-            head = n;
-            tail = n;
+    void add(char value) {
+        DLNode newNode = new DLNode(value);
+        if(first == null) {
+            first = newNode;
+            last = newNode;
         } else {
-            tail.next = n;
-            n.prev = tail;   // link backward
-            tail = n;
+            last.nextNode = newNode;
+            newNode.prevNode = last;   // link backward
+            last = newNode;
         }
     }
 
-    void insertAfterKey(char item, char key) {
-         Node current = head;
-         while(current != null) {
-            if(current.data == item) {
-                Node n = new Node(key);
-                n.next = current.next;
-                n.prev = current; // link backward
-                if(current.next != null) {
-                    current.next.prev = n; // link backward
+    void addAfter(char searchValue, char newValue) {
+         DLNode temp = first;
+         while(temp != null) {
+            if(temp.value == searchValue) {
+                DLNode newNode = new DLNode(newValue);
+                newNode.nextNode = temp.nextNode;
+                newNode.prevNode = temp; // link backward
+                if(temp.nextNode != null) {
+                    temp.nextNode.prevNode = newNode; // link backward
                 } else {
-                    tail = n; // Update tail if we are inserting at the end
+                    last = newNode; // Update tail if we are inserting at the end
                 }
-                current.next = n;
+                temp.nextNode = newNode;
                 break;
             }
-                current = current.next;
+            temp = temp.nextNode;
         }
     }
 
-    void insertAtStart(char item){
-        
-        Node n = new Node(item);
-        if(head == null) {
-            n.next = head;
-            head = n;
+    void addAtStart(char value){
+        DLNode newNode = new DLNode(value);
+        if(first == null) {
+            newNode.nextNode = first;
+            first = newNode;
         }
         else {
-            n.next = head;
-            head.prev = n;
-            head = n;
+            newNode.nextNode = first;
+            first.prevNode = newNode;
+            first = newNode;
         }
     }
 
-    void search(char item) {
-        Node current = head;
-        char index = 0;
-        while(current != null) {
-            if(current.data == item) {
-                System.out.println("Item found: " + item + " at index " + index);
+    void find(char value) {
+        DLNode temp = first;
+        char pos = 0;
+        while(temp != null) {
+            if(temp.value == value) {
+                System.out.println("Item found: " + value + " at index " + pos);
             }
-            current = current.next;
-            index++;
-            if(current == null) {
-                System.out.println("Item "+ item +" not found: ");
+            temp = temp.nextNode;
+            pos++;
+            if(temp == null) {
+                System.out.println("Item "+ value +" not found: ");
             }
         }
     }
 
-
-
-
-
-    void displayForward() {
-        Node current = head;
-        while(current != null) {
-            System.out.print(current.data + " <-> ");
-            current = current.next;
+    void showForward() {
+        DLNode temp = first;
+        while(temp != null) {
+            System.out.print(temp.value + " <-> ");
+            temp = temp.nextNode;
         }
         System.out.println("null");
     }
 
-    void displayBackward() {
-        Node current = tail;
-        while(current != null) {
-            System.out.print(current.data + " <-> ");
-            current = current.prev;
+    void showBackward() {
+        DLNode temp = last;
+        while(temp != null) {
+            System.out.print(temp.value + " <-> ");
+            temp = temp.prevNode;
         }
         System.out.println("null");
     }
 
-    void reverse() {
-        Node current = head;
-        Node temp = null;
+    void reverseList() {
+        DLNode temp = null;
+        DLNode current = first;
 
         while (current != null) {
-            temp = current.prev;
-            current.prev = current.next;
-            current.next = temp;
-            current = current.prev;
+            temp = current.prevNode;
+            current.prevNode = current.nextNode;
+            current.nextNode = temp;
+            current = current.prevNode;
         }
 
         if (temp != null) {
-            head = temp.prev;
+            first = temp.prevNode;
         }
     }
-
-
 }
-
 
 public class Task0503 {
     public static void main(String[] args) {
         
-        doublyLinkedList dll = new doublyLinkedList();
+        DoublyList list = new DoublyList();
 
-        dll.insert('A');
-        dll.insert('D');
-        dll.insert('F');
-        dll.insert('G');
-        dll.insert('K');
-        dll.insert('L');
-        dll.insert('M');
-        dll.insert('N');
-        dll.insert('S');
+        list.add('A');
+        list.add('D');
+        list.add('F');
+        list.add('G');
+        list.add('K');
+        list.add('L');
+        list.add('M');
+        list.add('N');
+        list.add('S');
 
-        dll.displayForward();
-        dll.displayBackward();
-        
+        list.showForward();
+        list.showBackward();
     } 
-    
 }
