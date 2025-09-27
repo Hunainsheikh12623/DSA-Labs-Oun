@@ -1,0 +1,17 @@
+Algorithm (Linear Search for 30 integers)
+
+Start
+
+Declare an array of size 30.
+
+Input 30 integers into the array.
+
+Input the target element to search.
+
+Traverse the array from index 0 to 29:
+
+If current element matches the target, print “Found at position” and stop.
+
+If the loop finishes without finding, print “Not found.”
+
+End.
