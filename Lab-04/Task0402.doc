@@ -1,0 +1,66 @@
+1. Bubble Sort 
+
+Working: Repeatedly compares adjacent elements and swaps them if they are in the wrong order. Largest element “bubbles” to the end in each pass. 
+
+Time Complexity: 
+
+Best Case: O(n) (if array is already sorted with a flag) 
+
+Average Case: O(n²) 
+
+Worst Case: O(n²) 
+
+Space Complexity: O(1) (in-place sorting) 
+
+Stability: Stable (equal elements preserve order). 
+
+ 
+
+2. Selection Sort 
+
+Working: Finds the smallest element and puts it in the first position, then the second smallest, and so on. 
+
+Time Complexity: 
+
+Best Case: O(n²) 
+
+Average Case: O(n²) 
+
+Worst Case: O(n²)Space Complexity: O(1) 
+
+Stability: Not stable (equal elements may change order). 
+
+Observation: Performs minimum number of swaps (at most n-1). 
+
+ 
+
+3. Insertion Sort 
+
+Working: Builds the sorted list one element at a time by inserting elements into their correct position. 
+
+Time Complexity: 
+
+Best Case: O(n) (if array is already sorted) 
+
+Average Case: O(n²) 
+
+Worst Case: O(n²) 
+
+Space Complexity: O(1) 
+
+Stability: Stable 
+
+Comparison Table: 
+
+Algo      | Best Case  | Avg Case  | Worst case  | Stable | Extra Space  | When Useful 
+
+Bubble         O(n)       O(n²)         O(n²)        Yes         O(1)         Rarely used, educational 
+
+Selection      O(n²)       O(n²)         O(n²)        NO         O(1)         Good when swaps are costly 
+
+Insertion       O(n)       O(n²)          O(n²)       Yes         O(1)         Small or nearly sorted data
+
+
+
+
+
