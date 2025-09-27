@@ -1,0 +1,446 @@
+// Task 1: Algorithm and Code (About Me)
+
+Algorithm:
+Start
+1. Print your name, roll number, department, and any other details.
+End
+
+class AboutMe2 {
+    public static void main(String[] args) {
+        System.out.println("Name: Hunain Sheikh");
+        System.out.println("Roll No: 12345");
+        System.out.println("Department: Computer Science");
+        System.out.println("University: MUET");
+    }
+}
+
+===================================================================================================
+
+// Task 2: Algorithm and Code (Basic Calculator with Two Numbers)
+
+Algorithm:
+Start
+1. Input two numbers a, b
+2. Compute sum = a + b, difference = a - b, product = a * b, division = a / b
+3. Print results
+End
+
+import java.util.Scanner;
+
+class BasicCalculator2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int a = input.nextInt();
+        System.out.print("Enter second number: ");
+        int b = input.nextInt();
+
+        System.out.println("Addition = " + (a+b));
+        System.out.println("Subtraction = " + (a-b));
+        System.out.println("Multiplication = " + (a*b));
+        if(b != 0)
+            System.out.println("Division = " + (a/b));
+        else
+            System.out.println("Division not possible (b=0).");
+    }
+}
+
+========================================================================================================
+
+// Task 3: Algorithm and Code (Discriminant)
+
+Algorithm:
+Start
+1. Input A, B, C
+2. Compute D = B*B - 4*A*C
+3. If D > 0 → Two real roots
+   If D = 0 → One real root
+   If D < 0 → Complex roots
+4. Print result
+End
+
+import java.util.Scanner;
+
+class Discriminant2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter A: ");
+        int A = input.nextInt();
+        System.out.print("Enter B: ");
+        int B = input.nextInt();
+        System.out.print("Enter C: ");
+        int C = input.nextInt();
+
+        int D = B*B - 4*A*C;
+        System.out.println("Discriminant = " + D);
+
+        if(D > 0)
+            System.out.println("Two real roots.");
+        else if(D == 0)
+            System.out.println("One real root.");
+        else
+            System.out.println("Complex roots.");
+    }
+}
+
+======================================================================================
+
+// Task 4: Algorithm and Code (Temperature Conversion)
+
+Algorithm:
+Start
+1. Input F (Fahrenheit)
+2. C = (F - 32) * 5/9
+3. Print Celsius
+End
+
+import java.util.Scanner;
+
+class TempConversion2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter temperature in Fahrenheit: ");
+        double F = input.nextDouble();
+
+        double C = (F - 32) * 5.0/9;
+        System.out.println("Temperature in Celsius = " + C);
+    }
+}
+
+============================================================================================
+
+// Task 5: Algorithm and Code (Calculator with Operator)
+
+Algorithm:
+Start
+1. Input a, b and operator op
+2. Switch op:
+   '+' → a+b
+   '-' → a-b
+   '*' → a*b
+   '/' → a/b
+3. Print result
+End
+
+import java.util.Scanner;
+
+class OperatorCalculator2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        double a = input.nextDouble();
+        System.out.print("Enter second number: ");
+        double b = input.nextDouble();
+        System.out.print("Enter operator (+,-,*,/): ");
+        char op = input.next().charAt(0);
+
+        double result = 0;
+        switch(op) {
+            case '+': result = a + b; break;
+            case '-': result = a - b; break;
+            case '*': result = a * b; break;
+            case '/': 
+                if(b != 0) result = a / b; 
+                else { System.out.println("Cannot divide by zero"); return; }
+                break;
+            default: System.out.println("Invalid operator"); return;
+        }
+        System.out.println("Result = " + result);
+    }
+}
+
+====================================================================================================
+
+// Task 6: Logical Operations
+
+Algorithm:
+Start
+1. Initialize a=5, b=10
+2. Apply (a<b && b>0), (a>10 || b>0), !(a<b)
+3. Print results
+End
+
+class LogicalOps2 {
+    public static void main(String[] args) {
+        int a = 5, b = 10;
+
+        System.out.println("a<b && b>0 = " + (a<b && b>0));
+        System.out.println("a>10 || b>0 = " + (a>10 || b>0));
+        System.out.println("!(a<b) = " + !(a<b));
+    }
+}
+
+=================================================================================================
+
+// Task 7: Largest of Three
+
+Algorithm:
+Start
+1. Input three numbers a, b, c
+2. If a>b && a>c → largest=a
+   Else if b>c → largest=b
+   Else largest=c
+3. Print largest
+End
+
+import java.util.Scanner;
+
+class LargestOfThree2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter 3 numbers: ");
+        int a = input.nextInt();
+        int b = input.nextInt();
+        int c = input.nextInt();
+
+        int largest;
+        if(a>b && a>c) largest = a;
+        else if(b>c) largest = b;
+        else largest = c;
+
+        System.out.println("Largest = " + largest);
+    }
+}
+
+=============================================================================================================
+
+// Task 8: Algorithm and Code (Temperature Conditions)
+
+Algorithm:
+Start
+1. Input Fahrenheit F
+2. Convert to Celsius: C = (F-32) * 5/9
+3. If C < 0 → "It is very cold today"
+   Else if C < 10 → "It is a cold day"
+   Else if C >= 40 → "It is a very hot day"
+   Else if C > 30 → "It is a hot day"
+   Else → "It's a normal day"
+End
+
+import java.util.Scanner;
+
+class TempCheck2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter temperature in Fahrenheit: ");
+        double F = input.nextDouble();
+
+        double C = (F - 32) * 5.0/9;
+        System.out.println("Celsius = " + C);
+
+        if(C < 0)
+            System.out.println("It is very cold today");
+        else if(C < 10)
+            System.out.println("It is a cold day");
+        else if(C >= 40)
+            System.out.println("It is a very hot day");
+        else if(C > 30)
+            System.out.println("It is a hot day");
+        else
+            System.out.println("It's a normal day");
+    }
+}
+
+
+=============================================================================================
+
+// Task 9: Algorithm and Code (Sum of First 100 Natural Numbers)
+
+Algorithm:
+Start
+1. Initialize sum=0
+2. For i=1 to 100 → sum+=i
+3. Print sum
+End
+
+class SumNatural2 {
+    public static void main(String[] args) {
+        int sum = 0;
+        for(int i=1; i<=100; i++) {
+            sum += i;
+        }
+        System.out.println("Sum of first 100 natural numbers = " + sum);
+    }
+}
+
+================================================================================
+
+// Task 10: Algorithm and Code (Factorial)
+
+Algorithm:
+Start
+1. Input n
+2. If n < 0 → print "factorial does not exist"
+3. Else set fact=1
+4. For i=1 to n → fact=fact*i
+5. Print fact
+End
+
+import java.util.Scanner;
+
+class Factorial2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int n = input.nextInt();
+
+        if(n < 0) {
+            System.out.println("Factorial of a negative number does not exist.");
+        } else {
+            long fact = 1;
+            for(int i=1; i<=n; i++) {
+                fact *= i;
+            }
+            System.out.println("Factorial = " + fact);
+        }
+    }
+}
+
+=======================================================================================
+
+// Task 11: Algorithm and Code (Multiplication Table)
+
+Algorithm:
+Start
+1. Input n (1–10)
+2. For i=1 to 10 → print n*i
+End
+
+import java.util.Scanner;
+
+class Table2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a number (1-10): ");
+        int n = input.nextInt();
+
+        if(n < 1 || n > 10) {
+            System.out.println("Invalid input!");
+            return;
+        }
+
+        for(int i=1; i<=10; i++) {
+            System.out.println(n + " x " + i + " = " + (n*i));
+        }
+    }
+}
+
+==========================================================================================
+
+// Task 12: Algorithm and Code (GCD using For Loop)
+
+Algorithm:
+Start
+1. Input a, b
+2. Set gcd=1
+3. For i=1 to min(a,b)
+   If a%i==0 and b%i==0 → gcd=i
+4. Print gcd
+End
+
+import java.util.Scanner;
+
+class GCD2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int a = input.nextInt();
+        System.out.print("Enter second number: ");
+        int b = input.nextInt();
+
+        int gcd = 1;
+        for(int i=1; i <= a && i <= b; i++) {
+            if(a % i == 0 && b % i == 0) {
+                gcd = i;
+            }
+        }
+
+        System.out.println("GCD = " + gcd);
+    }
+}
+
+
+==============================================================================
+
+// Task 13: Count Vowels
+
+Algorithm:
+Start
+1. Input a word
+2. Initialize count=0
+3. For each character:
+   If vowel → count++
+4. Print count
+End
+
+import java.util.Scanner;
+
+class VowelCount2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter a word: ");
+        String word = input.nextLine().toLowerCase();
+
+        int count = 0;
+        for(char c : word.toCharArray()) {
+            if("aeiou".indexOf(c) != -1) {
+                count++;
+            }
+        }
+
+        System.out.println("Number of vowels = " + count);
+    }
+}
+
+=====================================================================================
+
+// Task 14: Calculator with Switch
+
+Algorithm:
+Start
+1. Input a, b and operator
+2. Switch(op):
+   '+', '-', '*', '/'
+3. Print result
+End
+
+import java.util.Scanner;
+
+class SwitchCalculator2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        double a = input.nextDouble();
+        System.out.print("Enter second number: ");
+        double b = input.nextDouble();
+
+        System.out.print("Enter operator (+,-,*,/): ");
+        char op = input.next().charAt(0);
+
+        switch(op) {
+            case '+': System.out.println("Result = " + (a+b)); break;
+            case '-': System.out.println("Result = " + (a-b)); break;
+            case '*': System.out.println("Result = " + (a*b)); break;
+            case '/': 
+                if(b != 0) System.out.println("Result = " + (a/b));
+                else System.out.println("Division by zero not allowed.");
+                break;
+            default: System.out.println("Invalid operator!");
+        }
+    }
+}
+
+================================================================================================
+
+
+
