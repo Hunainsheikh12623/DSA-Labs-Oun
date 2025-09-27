@@ -442,5 +442,244 @@ class SwitchCalculator2 {
 
 ================================================================================================
 
+// Task 15: Area of Circle for 5 Radii
+
+Algorithm:
+Start
+1. Repeat 5 times:
+   - Input radius r
+   - Compute area = 3.14 * r * r
+   - Print area
+End
+
+import java.util.Scanner;
+
+class CircleArea2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        for(int i = 1; i <= 5; i++) {
+            System.out.print("Enter radius " + i + ": ");
+            double r = input.nextDouble();
+            double area = 3.14 * r * r;
+            System.out.println("Area = " + area);
+        }
+    }
+}
+
+==================================================================================================
+
+// Task 16: Even/Odd and Positive/Negative
+
+Algorithm:
+Start
+1. Input number n
+2. If n % 2 == 0 → Even else Odd
+3. If n >= 0 → Positive else Negative
+4. Print both results
+End
+
+import java.util.Scanner;
+
+class EvenOddSign2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter an integer: ");
+        int n = input.nextInt();
+
+        if(n % 2 == 0) 
+            System.out.println("Even number");
+        else 
+            System.out.println("Odd number");
+
+        if(n >= 0) 
+            System.out.println("Positive number");
+        else 
+            System.out.println("Negative number");
+    }
+}
+=======================================================================================
+
+// Task 17: Mark Sheet Program
+
+Algorithm:
+Start
+1. Input marks of subjects
+2. Compute total = sum of marks
+3. Compute percentage = total / number of subjects
+4. If per < 50 → FAIL
+   If 50 < per < 60 → C
+   If 60 < per < 70 → B
+   If 70 < per < 80 → A
+   If per > 80 → A-1
+5. Print total, percentage, and grade
+End
+
+import java.util.Scanner;
+
+class MarkSheet2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter number of subjects: ");
+        int n = input.nextInt();
+        int total = 0;
+
+        for(int i = 1; i <= n; i++) {
+            System.out.print("Enter marks of subject " + i + ": ");
+            total += input.nextInt();
+        }
+
+        double per = total / (double)n;
+        System.out.println("Total Marks = " + total);
+        System.out.println("Percentage = " + per);
+
+        if(per < 50) System.out.println("FAIL");
+        else if(per < 60) System.out.println("Grade = C");
+        else if(per < 70) System.out.println("Grade = B");
+        else if(per < 80) System.out.println("Grade = A");
+        else System.out.println("Grade = A-1");
+    }
+}
+
+================================================================================================================
+
+// Task 18: Generate Series with For Loop
+
+Algorithm:
+Start
+(a) Print numbers from 1 to 100
+(b) Print even numbers 1–40
+(c) Print odd numbers 1–40
+End
+
+class SeriesGenerator2 {
+    public static void main(String[] args) {
+        System.out.println("Natural numbers 1–100:");
+        for(int i = 1; i <= 100; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        System.out.println("Even numbers 1–40:");
+        for(int i = 2; i <= 40; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        System.out.println("Odd numbers 1–40:");
+        for(int i = 1; i <= 40; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+}
+============================================================================================================
+// Task 20: Array Operations (Max, Min, Avg)
+
+Algorithm:
+Start
+1. Input 5 integers into array
+2. Find max and min using loop
+3. Compute average = sum / 5
+4. Print results
+End
+
+import java.util.Scanner;
+
+class ArrayOps2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int[] arr = new int[5];
+        int sum = 0;
+
+        System.out.println("Enter 5 integers:");
+        for(int i = 0; i < 5; i++) {
+            arr[i] = input.nextInt();
+            sum += arr[i];
+        }
+
+        int max = arr[0], min = arr[0];
+        for(int i = 1; i < 5; i++) {
+            if(arr[i] > max) max = arr[i];
+            if(arr[i] < min) min = arr[i];
+        }
+
+        double avg = sum / 5.0;
+        System.out.println("Max = " + max);
+        System.out.println("Min = " + min);
+        System.out.println("Average = " + avg);
+    }
+}
+===========================================================================================================================
+
+// Task 37: Stack using Array
+
+Algorithm:
+Start
+1. Create array stack[]
+2. Provide menu: 1=Push, 2=Pop, 3=Peek, 4=Exit
+3. For Push: check if full, else insert
+4. For Pop: check if empty, else remove
+5. For Peek: show top element
+6. Repeat until exit
+End
+
+import java.util.Scanner;
+
+class StackArray2 {
+    static int top = -1;
+    static int[] stack = new int[5];
+
+    static void push(int x) {
+        if(top == stack.length - 1) {
+            System.out.println("Stack Overflow");
+        } else {
+            stack[++top] = x;
+            System.out.println(x + " pushed");
+        }
+    }
+
+    static void pop() {
+        if(top == -1) {
+            System.out.println("Stack Underflow");
+        } else {
+            System.out.println(stack[top--] + " popped");
+        }
+    }
+
+    static void peek() {
+        if(top == -1) {
+            System.out.println("Stack is empty");
+        } else {
+            System.out.println("Top = " + stack[top]);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("\n1.Push 2.Pop 3.Peek 4.Exit");
+            choice = sc.nextInt();
+            switch(choice) {
+                case 1: 
+                    System.out.print("Enter value: ");
+                    push(sc.nextInt()); break;
+                case 2: pop(); break;
+                case 3: peek(); break;
+                case 4: System.out.println("Exiting..."); break;
+                default: System.out.println("Invalid choice");
+            }
+        } while(choice != 4);
+    }
+}
+========================================================================================================================================
+
+
+
+
+
 
 
