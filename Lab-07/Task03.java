@@ -1,100 +1,94 @@
-class Stack{
-    char[] arr;
-    int top;
+class CharStack {
+    char[] stackArray;
+    int topIndex;
 
-    Stack(int size) {
-        arr = new char[size];
-        top = 0;
+    CharStack(int capacity) {
+        stackArray = new char[capacity];
+        topIndex = 0;
     }
 
-    void push(char c) {
-        if(top == arr.length) {
+    void push(char element) {
+        if(topIndex == stackArray.length) {
             System.out.println("Stack Overflow");
             return;
-        }
-        else{
-        arr[top] = c;
-        top++;
+        } else {
+            stackArray[topIndex] = element;
+            topIndex++;
         }
     }
 
     char pop() {
-        if(top == 0) {
+        if(topIndex == 0) {
             System.out.println("Stack Underflow");
             return '0';
-        }
-        else{
-        top--;
-        return arr[top];
+        } else {
+            topIndex--;
+            return stackArray[topIndex];
         }
     }
 
-    int size() {
-        return top;
+    int getSize() {
+        return topIndex;
     }
 
     boolean isEmpty() {
-        if(top == 0) return true;
+        if(topIndex == 0) return true;
         return false;
     }
 
-    void printStack() {
-        for(int i = top - 1; i >= 0; i--) {
-            System.out.print(arr[i] + " ");
+    void showStack() {
+        for(int i = topIndex - 1; i >= 0; i--) {
+            System.out.print(stackArray[i] + " ");
         }
         System.out.println();
     }
-
 }
 
 public class Task03 {
     public static void main(String[] args) {
-        Stack stack = new Stack(6);
+        CharStack myStack = new CharStack(6);
 
-        stack.push('A');
-        stack.push('C');
-        stack.push('D');
-        stack.push('F');
-        stack.push('k');
+        myStack.push('A');
+        myStack.push('C');
+        myStack.push('D');
+        myStack.push('F');
+        myStack.push('K');
 
-        stack.printStack();
-
+        myStack.showStack();
 
         // pop K
-        stack.pop();
-        stack.printStack();
+        myStack.pop();
+        myStack.showStack();
 
         // pop F
-        stack.pop();
-        stack.printStack();
+        myStack.pop();
+        myStack.showStack();
 
-        //push L
-        stack.push('L');
-        stack.printStack();
+        // push L
+        myStack.push('L');
+        myStack.showStack();
 
-        //push P
-        stack.push('P');
-        stack.printStack();
+        // push P
+        myStack.push('P');
+        myStack.showStack();
 
-        //pop P
-        stack.pop();
-        stack.printStack();
+        // pop P
+        myStack.pop();
+        myStack.showStack();
 
-        //push R
-        stack.push('R');
-        stack.printStack();
+        // push R
+        myStack.push('R');
+        myStack.showStack();
 
-        //push S
-        stack.push('S');
-        stack.printStack();
+        // push S
+        myStack.push('S');
+        myStack.showStack();
 
-        //pop S
-        stack.pop();
-        stack.printStack();
-
+        // pop S
+        myStack.pop();
+        myStack.showStack();
 
         System.out.println("Final Stack is: ");
-        stack.printStack();
-
+        myStack.showStack();
     }
 }
