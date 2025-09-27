@@ -1,30 +1,30 @@
-def precedence(op):
-    if op in ('+', '-'):
+def precedence(operator):
+    if operator in ('+', '-'):
         return 1
-    if op in ('*', '/'):
+    if operator in ('*', '/'):
         return 2
     return 0
 
 def infix_to_postfix(expression):
-    stack = []
-    output = ""
-    for char in expression:
-        if char.isalnum():  
-            output += char
-        elif char == '(':
-            stack.append(char)
-        elif char == ')':
-            while stack and stack[-1] != '(':
-                output += stack.pop()
-            stack.pop()
+    operator_stack = []
+    postfix = ""
+    for token in expression:
+        if token.isalnum():  
+            postfix += token
+        elif token == '(':
+            operator_stack.append(token)
+        elif token == ')':
+            while operator_stack and operator_stack[-1] != '(':
+                postfix += operator_stack.pop()
+            operator_stack.pop()
         else:   
-            while stack and precedence(stack[-1]) >= precedence(char):
-                output += stack.pop()
-            stack.append(char)
-    while stack:
-        output += stack.pop()
-    return output
+            while operator_stack and precedence(operator_stack[-1]) >= precedence(token):
+                postfix += operator_stack.pop()
+            operator_stack.append(token)
+    while operator_stack:
+        postfix += operator_stack.pop()
+    return postfix
 
 
-expr = "(A+B)*C"
-print("Postfix:", infix_to_postfix(expr))
+input_expr = "(A+B)*C"
+print("Postfix:", infix_to_postfix(input_expr))
