@@ -1,0 +1,51 @@
+. Bubble Sort 
+
+Best Case (O(n)): 
+ If the array is already sorted, then only one pass is needed with no swaps (if implemented with a flag). 
+
+Average Case (O(n²)): 
+ Each element may need to be compared with all others → about n²/2 comparisons. 
+
+Worst Case (O(n²)): 
+ If the array is in reverse order, each pass swaps almost all elements. 
+
+ 
+
+2. Selection Sort 
+
+Best Case (O(n²)): 
+ Even if the array is already sorted, the algorithm still goes through the entire list to find the minimum element. 
+
+Average Case (O(n²)): 
+ Always requires about n²/2 comparisons. 
+
+Worst Case (O(n²)): 
+ Reverse order still requires the same number of comparisons. 
+
+ 
+
+3. Insertion Sort 
+
+Best Case (O(n)): 
+ If the array is already sorted, only n-1 comparisons are needed, no shifting. 
+
+Average Case (O(n²)): 
+ On average, half of the elements need to be shifted for each insertion. 
+
+Worst Case (O(n²)): 
+ If the array is in reverse order, each new element is compared with all previous ones, requiring maximum shifts. 
+
+ 
+
+Algo  |     Best Case  |    Avg Case  |   Worst case  |   Stable 
+
+Bubble       O(n)             O(n²)         O(n²)           Yes 
+
+Selection     O(n²)           O(n²)         O(n²)           NO 
+
+Insertion     O(n)             O(n²)         O(n²)         Yes 
+
+
+
+
+ 
