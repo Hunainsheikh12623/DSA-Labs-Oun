@@ -1,0 +1,23 @@
+Start
+
+Declare an array of size 20.
+
+Input 20 integers in sorted order.
+
+Input the target element to search.
+
+Initialize low = 0, high = 19.
+
+While low <= high:
+
+Find mid = (low + high)/2.
+
+If arr[mid] == target, print “Found at position” and stop.
+
+If arr[mid] > target, set high = mid - 1.
+
+Else set low = mid + 1.
+
+If not found, print “Not found.”
+
+End.
