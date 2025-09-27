@@ -1,19 +1,15 @@
-def valid_postpix(expression):
-    stack = 0
-    for char in expression:
-        if char.isdigit() or char.isalnum():
-            stack += 1
-        elif char in "+-*/" :
-            if stack < 2:
+def is_valid_postfix(expr):
+    operand_count = 0
+    for symbol in expr:
+        if symbol.isdigit() or symbol.isalnum():
+            operand_count += 1
+        elif symbol in "+-*/":
+            if operand_count < 2:
                 return False
-            stack -= 1
+            operand_count -= 1
         else:
             return False
-        
-    return stack == 1
+    return operand_count == 1
 
-exp = input("Enter a postfix notation: ")
-print(valid_postpix(exp))
-
-
-        
+postfix_expr = input("Enter a postfix notation: ")
+print(is_valid_postfix(postfix_expr))
