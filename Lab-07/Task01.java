@@ -1,69 +1,58 @@
-class Stack{
-    char[] arr;
-    int top;
+class CharStack {
+    char[] elements;
+    int pointer;
 
-    Stack(int size) {
-        arr = new char[size];
-        top = 0;
+    CharStack(int capacity) {
+        elements = new char[capacity];
+        pointer = 0;
     }
 
-    void push(char c) {
-        if(top == arr.length) {
+    void push(char ch) {
+        if(pointer == elements.length) {
             System.out.println("Stack Overflow");
             return;
-        }
-        else{
-        arr[top] = c;
-        top++;
+        } else {
+            elements[pointer] = ch;
+            pointer++;
         }
     }
 
     char pop() {
-        if(top == 0) {
+        if(pointer == 0) {
             System.out.println("Stack Underflow");
             return '0';
-        }
-        else{
-        top--;
-        return arr[top];
+        } else {
+            pointer--;
+            return elements[pointer];
         }
     }
 
-    int size() {
-        return top;
+    int getSize() {
+        return pointer;
     }
 
     boolean isEmpty() {
-        if(top == 0) return true;
+        if(pointer == 0) return true;
         return false;
     }
 
-    void printStack() {
-        for(int i = top - 1; i >= 0; i--) {
-            System.out.print(arr[i] + " ");
+    void showStack() {
+        for(int i = pointer - 1; i >= 0; i--) {
+            System.out.print(elements[i] + " ");
         }
         System.out.println();
     }
-
-
- 
-
 }
-
 
 public class Task01 {
     public static void main(String[] args) {
+        CharStack s = new CharStack(10);
+        s.push('A');
+        s.push('B');
+        s.push('C');
 
-        Stack stack = new Stack(10);
-        stack.push('A');
-        stack.push('B');
-        stack.push('C');
-
-
-        stack.printStack();
-        System.out.println(stack.pop());
-        stack.printStack();
-        
-
+        s.showStack();
+        System.out.println(s.pop());
+        s.showStack();
     }
 }
