@@ -1,143 +1,140 @@
-class Node {
-    int data;
-    Node next;
+class Element {
+    int value;
+    Element link;
     
-    Node(int data) {
-        this.data = data;
-        this.next = null;
+    Element(int value) {
+        this.value = value;
+        this.link = null;
     }
-
 }
 
-class linkedList {
-    Node head = null;
-    Node tail = null;
+class CustomList {
+    Element start = null;
+    Element end = null;
 
-    void insert(int data) {
-        Node n = new Node(data);
-        if(head == null) {
-            head = n;
-            tail = n;
+    void add(int value) {
+        Element temp = new Element(value);
+        if(start == null) {
+            start = temp;
+            end = temp;
         } else {
-            tail.next = n;
-            tail = n;
+            end.link = temp;
+            end = temp;
         }
     }
 
-    void insertAfterKey(int item, int key) {
-         Node current = head;
-         while(current != null) {
-            if(current.data == item) {
-                Node n = new Node(key);
-                n.next = current.next;
-                current.next = n;
+    void addAfterKey(int target, int newValue) {
+        Element ptr = start;
+        while(ptr != null) {
+            if(ptr.value == target) {
+                Element temp = new Element(newValue);
+                temp.link = ptr.link;
+                ptr.link = temp;
             }
-                current = current.next;
-            }
+            ptr = ptr.link;
+        }
     }
 
-    void insertAtStart(int item){
-        Node n = new Node(item);
-        n.next = head;
-        head = n;
+    void addAtStart(int value){
+        Element temp = new Element(value);
+        temp.link = start;
+        start = temp;
     }
 
-    void insertAtLast(int item) {
-        Node n = new Node(item);
-        tail.next = n;
-        n.next = null;
+    void addAtLast(int value) {
+        Element temp = new Element(value);
+        end.link = temp;
+        temp.link = null;
     }
 
-    void search(int item) {
-        Node current = head;
-        int index = 0;
-        while(current != null) {
-            if(current.data == item) {
-                System.out.println("Item found: " + item + " at index " + index);
+    void search(int key) {
+        Element ptr = start;
+        int pos = 0;
+        while(ptr != null) {
+            if(ptr.value == key) {
+                System.out.println("Item found: " + key + " at index " + pos);
             }
-            current = current.next;
-            index++;
-            if(current == null) {
-                System.out.println("Item "+ item +" not found: ");
+            ptr = ptr.link;
+            pos++;
+            if(ptr == null) {
+                System.out.println("Item " + key + " not found: ");
             }
         }
     }
 
-    void display() {
-        Node current = head;
-        while(current != null) {
-            if(current.data == 0) {
-                current = current.next;
+    void show() {
+        Element ptr = start;
+        while(ptr != null) {
+            if(ptr.value == 0) {
+                ptr = ptr.link;
             }
             else{
-            System.out.print(current.data + " -> ");
-            current = current.next;
+                System.out.print(ptr.value + " -> ");
+                ptr = ptr.link;
             }
-            
         }
         System.out.println("null");
     }
 
     void reverse() {
-        Node prev = null;
-        Node current = head;
-        Node next = null;
-        tail = head; // Update tail to the original head
-        while(current != null) {
-            next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+        Element prev = null;
+        Element curr = start;
+        Element nxt = null;
+        end = start; 
+        while(curr != null) {
+            nxt = curr.link;
+            curr.link = prev;
+            prev = curr;
+            curr = nxt;
         }
-        head = prev; // Update head to the new front of the list
+        start = prev;
     }
 
-    void removeFirstNode() {
-        if(head == null) {
+    void removeFirst() {
+        if(start == null) {
             System.out.println("Underflow");
         }
         else{
-            head = head.next;
+            start = start.link;
         }
     }
-    void removeLastNode() {
-        if (head == null) {
+    void removeLast() {
+        if (start == null) {
             System.out.println("Underflow");
             return;
         }
-        if (head == tail) { 
-            head = null;
-            tail = null;
+        if (start == end) { 
+            start = null;
+            end = null;
             return;
         }
-        Node current = head;
-        while (current.next != tail) {
-            current = current.next;
+        Element ptr = start;
+        while (ptr.link != end) {
+            ptr = ptr.link;
         }
 
-        current.next = null; 
-        tail = current;      
+        ptr.link = null; 
+        end = ptr;      
     }
 }
 
-public class Task04{
+public class Task04 {
     public static void main(String[] args) {
-        linkedList l = new linkedList();
-        l.insert(1);
-        l.insert(4);
-        l.insert(2);
-        l.insert(11);
-        l.insert(5);
-        l.insert(6);
-        l.insert(7);
-        l.insert(9);
-        l.insert(15);
+        CustomList list = new CustomList();
+        list.add(1);
+        list.add(4);
+        list.add(2);
+        list.add(11);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(9);
+        list.add(15);
 
-        l.display();
-        l.removeFirstNode();
-        l.display();
-        l.removeLastNode();
-        l.display();
+        list.show();
+        list.removeFirst();
+        list.show();
+        list.removeLast();
+        list.show();
     }
 }
-
