@@ -1,162 +1,146 @@
 package Lab05;
-class Node {
-    int data;
-    Node next;
-    
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
 
+class Element {
+    int value;
+    Element nextNode;
+    
+    Element(int value) {
+        this.value = value;
+        this.nextNode = null;
+    }
 }
 
-class linkedList {
-    Node head = null;
-    Node tail = null;
+class CustomLinkedList {
+    Element first = null;
+    Element last = null;
 
-    void insert(int data) {
-        Node n = new Node(data);
-        if(head == null) {
-            head = n;
-            tail = n;
+    void add(int value) {
+        Element node = new Element(value);
+        if(first == null) {
+            first = node;
+            last = node;
         } else {
-            tail.next = n;
-            tail = n;
+            last.nextNode = node;
+            last = node;
         }
     }
 
-    void insertAfterKey(int item, int key) {
-         Node current = head;
-         while(current != null) {
-            if(current.data == item) {
-                Node n = new Node(key);
-                n.next = current.next;
-                current.next = n;
-            }
-                current = current.next;
-            }
-    }
-
-    void insertAtStart(int item){
-        Node n = new Node(item);
-        n.next = head;
-        head = n;
-    }
-
-    void search(int item) {
-        Node current = head;
-        int index = 0;
+    void addAfterKey(int searchVal, int newVal) {
+        Element current = first;
         while(current != null) {
-            if(current.data == item) {
-                System.out.println("Item found: " + item + " at index " + index);
+            if(current.value == searchVal) {
+                Element node = new Element(newVal);
+                node.nextNode = current.nextNode;
+                current.nextNode = node;
             }
-            current = current.next;
-            index++;
+            current = current.nextNode;
+        }
+    }
+
+    void addAtStart(int newVal){
+        Element node = new Element(newVal);
+        node.nextNode = first;
+        first = node;
+    }
+
+    void find(int searchVal) {
+        Element current = first;
+        int pos = 0;
+        while(current != null) {
+            if(current.value == searchVal) {
+                System.out.println("Item found: " + searchVal + " at index " + pos);
+            }
+            current = current.nextNode;
+            pos++;
             if(current == null) {
-                System.out.println("Item "+ item +" not found: ");
+                System.out.println("Item "+ searchVal +" not found: ");
             }
         }
     }
 
-
-
-
-
-    void display() {
-        Node current = head;
+    void show() {
+        Element current = first;
         while(current != null) {
-            System.out.print(current.data + " -> ");
-            current = current.next;
+            System.out.print(current.value + " -> ");
+            current = current.nextNode;
         }
         System.out.println("null");
     }
 
-    void reverse() {
-        Node prev = null;
-        Node current = head;
-        Node next = null;
-        tail = head; // Update tail to the original head
+    void reverseList() {
+        Element prev = null;
+        Element current = first;
+        Element nxt = null;
+        last = first; // Update last to the original first
         while(current != null) {
-            next = current.next;
-            current.next = prev;
+            nxt = current.nextNode;
+            current.nextNode = prev;
             prev = current;
-            current = next;
+            current = nxt;
         }
-        head = prev; // Update head to the new front of the list
+        first = prev; // Update first to the new head
     }
 
-    void treverse() {
-            Node current = head;
+    void traverse() {
+        Element current = first;
 
-            System.out.println("");
-            System.out.println("Traversing Geo Marks");
-            while(current.data != 0) {
-                System.out.print(current.data + " -> ");
-                current = current.next;
-            }
-
-            System.out.println("null");
-            current = current.next;
-
-            System.out.println("");
-
-            System.out.println("Traversing Algos Marks");
-            while(current.data != 0) {
-                System.out.print(current.data + " -> ");
-                current = current.next;
-            }
-            System.out.println("null");
+        System.out.println("");
+        System.out.println("Traversing Geo Marks");
+        while(current.value != 0) {
+            System.out.print(current.value + " -> ");
+            current = current.nextNode;
         }
+
+        System.out.println("null");
+        current = current.nextNode;
+
+        System.out.println("");
+        System.out.println("Traversing Algos Marks");
+        while(current.value != 0) {
+            System.out.print(current.value + " -> ");
+            current = current.nextNode;
+        }
+        System.out.println("null");
+    }
     
-    void treverseHighestAlgo() {
-        Node current = head;
-        while(current.data != 0) {
-            current = current.next;
+    void traverseHighestAlgo() {
+        Element current = first;
+        while(current.value != 0) {
+            current = current.nextNode;
         }
-        current = current.next;
+        current = current.nextNode;
 
-        System.out.println("Traversing Algos Marks which are greate then 75");
-            while(current.data != 0) {
-                if(current.data > 75) {
-                System.out.print(current.data + " -> ");
-                }
-                current = current.next;
+        System.out.println("Traversing Algos Marks which are greater than 75");
+        while(current.value != 0) {
+            if(current.value > 75) {
+                System.out.print(current.value + " -> ");
             }
-            System.out.println("null");
+            current = current.nextNode;
         }
-
-
-
+        System.out.println("null");
+    }
 }
 
-
-public class Task0502 {
+public class Task0502{
     public static void main(String[] args) {
-        int Algo = 0;
-        int geo = 0;
+        int algoMarks = 0;
+        int geoMarks = 0;
 
-        linkedList list = new linkedList();
-        list.insert(84);
-        list.insert(62);
-        list.insert(74);
-        list.insert(100);
-        list.insert(74);
-        list.insert(78);
-        list.insert(0);
-        list.insert(88);
-        list.insert(74);
-        list.insert(93);
-        list.insert(82);
-        list.insert(0);
+        CustomLinkedList marks = new CustomLinkedList();
+        marks.add(84);
+        marks.add(62);
+        marks.add(74);
+        marks.add(100);
+        marks.add(74);
+        marks.add(78);
+        marks.add(0);
+        marks.add(88);
+        marks.add(74);
+        marks.add(93);
+        marks.add(82);
+        marks.add(0);
 
-        list.treverse();
-
-        list.treverseHighestAlgo();
-        
-        
-
-        
-        
+        marks.traverse();
+        marks.traverseHighestAlgo();
     } 
-    
 }
