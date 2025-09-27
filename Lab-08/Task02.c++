@@ -2,27 +2,27 @@
 #include<cctype>
 using namespace std;
 
-class Stack{
+class IntStack {
 
-    int num;
-    int top;
-    int* arr;
+    int capacity;
+    int topIndex;
+    int* stackArray;
 
     public:
     
-    Stack(int n) {
-        num = n;
-        top = 0;
-        arr = new int[num];
+    IntStack(int size) {
+        capacity = size;
+        topIndex = 0;
+        stackArray = new int[capacity];
     }
 
-    void push(int n) {
+    void push(int value) {
         if(isFull()) {
             cout << "OverFlow" << endl ;
         }
-        else{
-        arr[top] = n;
-        top++;
+        else {
+            stackArray[topIndex] = value;
+            topIndex++;
         }
     }
 
@@ -31,42 +31,40 @@ class Stack{
             cout << "UnderFlow" << endl;
             return '0';
         }
-        else{
-        top--;
-        return arr[top];
+        else {
+            topIndex--;
+            return stackArray[topIndex];
         }
     }
 
     bool isEmpty() {
-        return (top == 0);
+        return (topIndex == 0);
     }
 
     bool isFull() {
-        return (top == num);
+        return (topIndex == capacity);
     }
-    
-
 };
 
 int main() {
 
-    string s;
-    cout << "Enter a reverse prefix(postfix) Notation: " << endl;
-    cin >> s;
+    string expression;
+    cout << "Enter a reverse prefix (postfix) Notation: " << endl;
+    cin >> expression;
 
-    Stack stack(s.length());
+    IntStack evalStack(expression.length());
 
-    for (int i = 0; i < s.length(); i++) {
-        char c = s[i];
+    for (int i = 0; i < expression.length(); i++) {
+        char symbol = expression[i];
 
-        if (isdigit(c)) {
-            stack.push(c - '0');
+        if (isdigit(symbol)) {
+            evalStack.push(symbol - '0');
         } else {
-            int operand2 = stack.pop();
-            int operand1 = stack.pop();
+            int operand2 = evalStack.pop();
+            int operand1 = evalStack.pop();
             int result;
 
-            switch (c) {
+            switch (symbol) {
                 case '+': result = operand1 + operand2; break;
                 case '-': result = operand1 - operand2; break;
                 case '*': result = operand1 * operand2; break;
@@ -81,11 +79,10 @@ int main() {
                     cout << "Invalid operator!" << endl;
                     return 0;
             }
-            stack.push(result);
+            evalStack.push(result);
         }
     }
 
-    cout << "Result = " << stack.pop() << endl;
+    cout << "Result = " << evalStack.pop() << endl;
     return 0;
 }
-
